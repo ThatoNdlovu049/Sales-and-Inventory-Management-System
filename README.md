@@ -4,22 +4,22 @@ The Inventory & Sales Management System is a Windows Forms application built wit
 
 This project showcases practical skills in object‑oriented programming (OOP), database design, and user interface development, making it ideal for recruiters evaluating .NET developers.
 
-#Features
-#Product Management
+# Features
+# Product Management
 Add, edit, delete, and view products.
 Fields: ProductID, Name, Category, Price, StockQuantity.
-#Customer Management
+# Customer Management
 CRUD operations for customers.
 Fields: CustomerID, Name, Email, Phone.
-#Sales & Orders
+# Sales & Orders
 Create new orders with multiple products.
 Automatically update stock when an order is placed.
-#User Authentication
+# User Authentication
 Login system with roles:
 Admin: Full access to the system
 Cashier: Limited access to sales and customer operations.
 
-#Tech Stack
+# Tech Stack
 Language: C# (.NET Framework)
 UI: Windows Forms
 Database: SQL Server
