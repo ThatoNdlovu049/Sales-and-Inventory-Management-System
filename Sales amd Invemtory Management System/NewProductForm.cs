@@ -54,7 +54,7 @@ namespace Sales_amd_Invemtory_Management_System
             double productPrice = Convert.ToDouble(pPrice.Text);
             int stockQuantity = Convert.ToInt32(pQuantity.Text);
 
-            Product product = new Product(productName, productCategory, productPrice, stockQuantity);
+            Product product = new Product {Name = productName, Category = productCategory, Price = productPrice, StockQuantity = stockQuantity };
             handler.AddNewProduct(product.Name, product.Category, product.Price, product.StockQuantity);
            
         }

@@ -153,5 +153,103 @@ namespace Sales_amd_Invemtory_Management_System
                 connection.Close();
             }
         }
+        public DataTable DisplayOrders()
+        {
+            string querry = "SELECT * FROM Orders";
+            connection = new SqlConnection(conn);
+            DataTable table = new DataTable();
+            adapter = new SqlDataAdapter(querry, connection);
+            adapter.Fill(table);
+            return table;
+        }
+        public void PlaceOrder(int customerId, int ProductId, int Quantity)
+        {
+            string querry = "SELECT * FROM Products";
+            connection = new SqlConnection(conn);
+            DataTable table = new DataTable();
+            adapter = new SqlDataAdapter(querry, connection);
+            adapter.Fill(table);
+            List<Product> products = new List<Product>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                products.Add(new Product {Id = Convert.ToInt32(row["ProductId"]) ,Name = row["ProductName"].ToString(),Category = row["Category"].ToString(),Price = Convert.ToDouble(row["Price"]), StockQuantity = Convert.ToInt32(row["StockQuantity"])});
+            }
+            bool temp = false;
+            foreach (var horse in products)
+            {
+                if(horse.Id == ProductId)
+                {
+                    if(Quantity <= horse.StockQuantity)
+                    {
+                        int stockRemaining = horse.StockQuantity - Quantity;
+                        string updateProductQuery = $@"UPDATE Products SET [ProductName] = '{horse.Name}', [Category] = '{horse.Category}', [Price] = '{horse.Price}', [StockQuantity] = '{stockRemaining}' WHERE [ProductId] = '{horse.Id}'";
+                        string addOrderQuery = $@"INSERT INTO Orders VALUES('{customerId}','{ProductId}','{Quantity}')";
+
+                        //Adding new order querry
+                        connection = new SqlConnection(conn);
+                        connection.Open();
+                        command = new SqlCommand(addOrderQuery, connection);
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Order successfully placed");
+
+                        }catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                        //Updating Product database
+                        connection = new SqlConnection(conn);
+                        connection.Open();
+                        command = new SqlCommand(updateProductQuery, connection);
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+
+                        }catch( Exception ex )
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                        break;
+                    }
+                    temp = true;
+                }
+            }
+            if (temp)
+            {
+                MessageBox.Show("The quantity entered is larger than what is available in the invetory");
+            }
+        }
+        public void UpdateOrder(int orderNumber, int customeId, int ProductId, int Quantity)
+        {
+            string query = $@"UPDATE Orders SET [CustomerId] = '{customeId}', [ProductId] = '{ProductId}', [Quantity] = '{Quantity}' WHERE [OrderNumber] = '{orderNumber}'";
+            connection = new SqlConnection(conn);
+            connection.Open();
+            command = new SqlCommand(query, connection);
+
+            try
+            {
+                command.ExecuteNonQuery();
+                MessageBox.Show("Order updated successfully");
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
