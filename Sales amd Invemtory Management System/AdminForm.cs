@@ -19,7 +19,8 @@ namespace Sales_amd_Invemtory_Management_System
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            OrdersForm form = new OrdersForm();
+            form.ShowDialog();
         }
 
         private void newCustomer_btn_Click(object sender, EventArgs e)
@@ -31,6 +32,18 @@ namespace Sales_amd_Invemtory_Management_System
         private void newProduct_btn_Click(object sender, EventArgs e)
         {
             NewProductForm form = new NewProductForm();
+            form.ShowDialog();
+        }
+
+        private void AddNewStaffMember_btn_Click(object sender, EventArgs e)
+        {
+            AddStaffMember form = new AddStaffMember();
+            form.ShowDialog();
+        }
+
+        private void unblockStaff_btn_Click(object sender, EventArgs e)
+        {
+            UnblockStaffMember form = new UnblockStaffMember();
             form.ShowDialog();
         }
     }

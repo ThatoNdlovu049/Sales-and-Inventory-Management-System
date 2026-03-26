@@ -129,5 +129,16 @@ namespace Sales_amd_Invemtory_Management_System
             ProductId_txt.Text = string.Empty;
             OrderQuantity_txt.Text = string.Empty;
         }
+
+        private void deleteOrder_btn_Click(object sender, EventArgs e)
+        {
+            if(!int.TryParse(orderId.Text, out int orderid))
+            {
+                MessageBox.Show("Order number/id has to be an integer");
+                return;
+            }
+            int orderNumber = Convert.ToInt32(orderId.Text);
+            handler.DeleteOrder(orderNumber);
+        }
     }
 }

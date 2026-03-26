@@ -28,5 +28,17 @@ namespace Sales_amd_Invemtory_Management_System
             NewProductForm form = new NewProductForm();
             form.ShowDialog();
         }
+
+        private void addNewStaffMember_btn_Click(object sender, EventArgs e)
+        {
+            AddStaffMember form = new AddStaffMember();
+            form.ShowDialog();
+        }
+
+        private void order_btn_Click(object sender, EventArgs e)
+        {
+            OrdersForm form = new OrdersForm();
+            form.ShowDialog();
+        }
     }
 }

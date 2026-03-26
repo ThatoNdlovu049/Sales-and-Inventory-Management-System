@@ -41,6 +41,7 @@
             this.order_btn.TabIndex = 0;
             this.order_btn.Text = "Place New Order";
             this.order_btn.UseVisualStyleBackColor = true;
+            this.order_btn.Click += new System.EventHandler(this.order_btn_Click);
             // 
             // newProduct_btn
             // 

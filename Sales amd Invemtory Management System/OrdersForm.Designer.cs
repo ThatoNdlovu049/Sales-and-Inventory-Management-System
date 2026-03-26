@@ -44,6 +44,7 @@
             this.OrdersdataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.deleteOrder_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CustomersdataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsdataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersdataGridView1)).BeginInit();
@@ -193,11 +194,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // deleteOrder_btn
+            // 
+            this.deleteOrder_btn.Location = new System.Drawing.Point(507, 277);
+            this.deleteOrder_btn.Name = "deleteOrder_btn";
+            this.deleteOrder_btn.Size = new System.Drawing.Size(91, 23);
+            this.deleteOrder_btn.TabIndex = 16;
+            this.deleteOrder_btn.Text = "Delete Order";
+            this.deleteOrder_btn.UseVisualStyleBackColor = true;
+            this.deleteOrder_btn.Click += new System.EventHandler(this.deleteOrder_btn_Click);
+            // 
             // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deleteOrder_btn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.OrdersdataGridView1);
@@ -243,5 +255,6 @@
         private System.Windows.Forms.DataGridView OrdersdataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button deleteOrder_btn;
     }
 }

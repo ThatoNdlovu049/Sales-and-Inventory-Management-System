@@ -251,5 +251,24 @@ namespace Sales_amd_Invemtory_Management_System
                 connection.Close();
             }
         }
+        public void DeleteOrder(int orderNumber)
+        {
+            string query = $@"DELETE FROM Orders WHERE [orderNumber] = '{orderNumber}'";
+            connection = new SqlConnection(conn);
+            connection.Open();
+            command = new SqlCommand(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+                MessageBox.Show("Order deleted successfully");
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }

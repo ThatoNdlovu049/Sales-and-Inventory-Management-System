@@ -30,7 +30,6 @@ namespace Sales_amd_Invemtory_Management_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            handler.members.Clear();
             handler.Read();
 
             try
@@ -41,16 +40,22 @@ namespace Sales_amd_Invemtory_Management_System
                 if(!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(userPassword))
                 {
                     bool userFound = false;
-                    bool passwordCorrect = false;
+                    
                     foreach(staffMember horse in handler.members)
                     {
                         if(horse.UserName == userName)
                         {
                             userFound = true;
-                            if(horse.Password == userPassword)
+                            if (horse.isLocked)
                             {
-                                passwordCorrect = true;
-                                if(horse.Role.ToLower() == "staff")
+                                MessageBox.Show("Your account has been blocked contact administrator");
+                                username.Text = string.Empty;
+                                password.Text = string.Empty;
+                            }
+                            else if (horse.Password == userPassword)
+                            {
+
+                                if (horse.Role.ToLower() == "staff")
                                 {
                                     StaffForm form = new StaffForm();
                                     form.ShowDialog();
@@ -64,11 +69,28 @@ namespace Sales_amd_Invemtory_Management_System
                                     username.Text = string.Empty;
                                     password.Text = string.Empty;
                                 }
-                                
+
                             }
+                            else
+                            {
+                                horse.Attempts++;
+                                if (horse.Attempts >= 3)
+                                {
+                                    horse.isLocked = true;
+                                    MessageBox.Show("Your account has been blocked contact administrator");
+                                    handler.UpdateExistingMember(horse.UserName, horse.Attempts, horse.isLocked);
+                                    username.Text = string.Empty;
+                                    password.Text = string.Empty;
+                                }
+                                else
+                                {
+                                    MessageBox.Show($"Incorrect username or password!{horse.Attempts}");
+                                }
+                            }
+                            return;
                         }
                     }
-                    if (!userFound || !passwordCorrect)
+                    if (!userFound)
                     {
                         MessageBox.Show("Incorrect username or password");
                         username.Text = string.Empty;

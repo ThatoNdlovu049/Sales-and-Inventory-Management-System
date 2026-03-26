@@ -32,6 +32,7 @@
             this.newCustomer_btn = new System.Windows.Forms.Button();
             this.newOrder_btn = new System.Windows.Forms.Button();
             this.unblockStaff_btn = new System.Windows.Forms.Button();
+            this.AddNewStaffMember_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // newProduct_btn
@@ -66,18 +67,30 @@
             // 
             // unblockStaff_btn
             // 
-            this.unblockStaff_btn.Location = new System.Drawing.Point(78, 246);
+            this.unblockStaff_btn.Location = new System.Drawing.Point(244, 85);
             this.unblockStaff_btn.Name = "unblockStaff_btn";
             this.unblockStaff_btn.Size = new System.Drawing.Size(127, 34);
             this.unblockStaff_btn.TabIndex = 3;
             this.unblockStaff_btn.Text = "Unblock Staff Member";
             this.unblockStaff_btn.UseVisualStyleBackColor = true;
+            this.unblockStaff_btn.Click += new System.EventHandler(this.unblockStaff_btn_Click);
+            // 
+            // AddNewStaffMember_btn
+            // 
+            this.AddNewStaffMember_btn.Location = new System.Drawing.Point(244, 137);
+            this.AddNewStaffMember_btn.Name = "AddNewStaffMember_btn";
+            this.AddNewStaffMember_btn.Size = new System.Drawing.Size(127, 34);
+            this.AddNewStaffMember_btn.TabIndex = 4;
+            this.AddNewStaffMember_btn.Text = "Add New Staff Member";
+            this.AddNewStaffMember_btn.UseVisualStyleBackColor = true;
+            this.AddNewStaffMember_btn.Click += new System.EventHandler(this.AddNewStaffMember_btn_Click);
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AddNewStaffMember_btn);
             this.Controls.Add(this.unblockStaff_btn);
             this.Controls.Add(this.newOrder_btn);
             this.Controls.Add(this.newCustomer_btn);
@@ -94,5 +107,6 @@
         private System.Windows.Forms.Button newCustomer_btn;
         private System.Windows.Forms.Button newOrder_btn;
         private System.Windows.Forms.Button unblockStaff_btn;
+        private System.Windows.Forms.Button AddNewStaffMember_btn;
     }
 }
